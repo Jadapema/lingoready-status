@@ -1,31 +1,41 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+owner: Jadapema
+repo: lingoready-status
 
+# Monitors run every 5 minutes via GitHub Actions.
+# Update the URLs when the API deploys to its real host.
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Test Broken Site
-    url: https://thissitedoesnotexist.koj.co
+  - name: Lingoready API
+    url: https://api.lingoready.app/health
+    expectedStatusCodes:
+      - 200
+  - name: Lingoready API — Remote config
+    url: https://api.lingoready.app/v1/config
+    expectedStatusCodes:
+      - 200
+  - name: Documentation site
+    url: https://jadapema.github.io/lingoready-api-docs/
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
+  baseUrl: /lingoready-status
+  name: Lingoready Status
   logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  introTitle: '**Lingoready** system status'
+  introMessage: Real-time uptime, response times and incident history for the Lingoready API. Incidents are tracked as GitHub issues and appear here automatically.
   navbar:
     - title: Status
       href: /
+    - title: API Docs
+      href: https://jadapema.github.io/lingoready-api-docs/
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
+  theme: light
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# Uptime checks every 5 min; response-time graphs update daily
+workflowSchedule:
+  uptime: '*/5 * * * *'
+  responseTime: '0 23 * * *'
+  staticSite: '0 1 * * *'
+
+commitMessages:
+  commitAuthorName: Jadapema
+  commitAuthorEmail: jadapema@gmail.com
